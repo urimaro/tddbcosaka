@@ -43,14 +43,18 @@ describe "自販機" do
       subject { @jihanki }
       its(:display) { should eq 120 }
       its(:getOtsuri) { should eq 0 }
-    end
+    end	
 
     context "想定外のもの" do
-      jihanki = Jihanki.new
-      [2000, 100, 10, 1, 10, 1000, 5].each do |num|
-        jihanki.input(num)
+      before do
+        @jihanki = Jihanki.new
+        [2000, 100, 10, 1, 10, 1000, 5].each do |num|
+          @jihanki.input(num)
+        end
       end
-      it { jihanki.display.should eq 1120 }
+      subject { @jihanki }
+      its(:display) { should eq 1120 }
+      its(:getOtsuri) { should eq 2006 }
     end
   end
 end
