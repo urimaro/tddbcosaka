@@ -67,5 +67,7 @@ describe "自販機" do
       end
       subject { @jihanki }
       its(:harai_modoshi) { should eq 1170 }
+      its(:total) { should eq 0 }
+      its(:otsuri) { should eq 1170 }
   end
 end
