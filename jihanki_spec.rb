@@ -11,14 +11,14 @@ describe "自販機" do
   subject { @jihanki }
 
   context "何もしないときに0円を表示" do
-    its(:display) { should == 0 }
+    its(:total) { should == 0 }
   end
 
   context "自販機に入る場合" do
     [10, 50, 100, 500, 1000].each do |num|
       context "#{num}円を入力したら#{num}円と表示" do
         before { @jihanki.input(num) }
-        its(:display) { should eq num }
+        its(:total) { should eq num }
       end
     end
   end
@@ -27,7 +27,7 @@ describe "自販機" do
     [1, 5, 2000, 5000, 10000].each do |num|
       context "#{num}円を入力したら0円と表示" do
         before { @jihanki.input(num) }
-        its(:display) { should eq 0 }
+        its(:total) { should eq 0 }
       end
     end
   end
@@ -41,8 +41,8 @@ describe "自販機" do
         end
       end
       subject { @jihanki }
-      its(:display) { should eq 120 }
-      its(:getOtsuri) { should eq 0 }
+      its(:total) { should eq 120 }
+      its(:otsuri) { should eq 0 }
     end	
 
     context "想定外のもの" do
@@ -53,8 +53,8 @@ describe "自販機" do
         end
       end
       subject { @jihanki }
-      its(:display) { should eq 1120 }
-      its(:getOtsuri) { should eq 2006 }
+      its(:total) { should eq 1120 }
+      its(:otsuri) { should eq 2006 }
     end
   end
 end

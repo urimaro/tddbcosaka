@@ -4,7 +4,7 @@ class Jihanki
     @otsuri = 0
   end
 
-  def display
+  def total
     @money
   end
   
@@ -17,7 +17,7 @@ class Jihanki
     end
   end
 
-  def getOtsuri
+  def otsuri
     @otsuri
   end
 end
