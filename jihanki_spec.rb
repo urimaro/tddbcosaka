@@ -64,10 +64,11 @@ describe "自販機" do
         [100, 10, 10, 50, 1000].each do |num|
           @jihanki.input(num)
         end
+        @change = @jihanki.harai_modoshi
       end
       subject { @jihanki }
-      its(:harai_modoshi) { should eq 1170 }
       its(:total) { should eq 0 }
+      it { @change.should == 1170 }
       its(:otsuri) { should eq 1170 }
   end
 end

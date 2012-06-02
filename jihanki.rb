@@ -16,6 +16,8 @@ class Jihanki
   end
 
   def harai_modoshi
-    @total
+    @otsuri = @total
+    @total = 0
+    @otsuri
   end
 end
