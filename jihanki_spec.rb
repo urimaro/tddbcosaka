@@ -32,4 +32,23 @@ describe "自販機" do
       end
     end
   end
+
+  context "複数回入金する場合" do
+    context "想定内のもの" do
+      jihanki = Jihanki.new
+      [100, 10, 10].each do |num|
+        jihanki.input(num)
+      end
+      it { jihanki.display.should eq 120 }
+      it { jihanki.getOtsuri.should eq 0 }
+    end
+
+    context "想定外のもの" do
+      jihanki = Jihanki.new
+      [2000, 100, 10, 1, 10, 1000, 5].each do |num|
+        jihanki.input(num)
+      end
+      it { jihanki.display.should eq 1120 }
+    end
+  end
 end
