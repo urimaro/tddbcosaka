@@ -8,18 +8,17 @@ describe "自販機" do
   before do
     @jihanki = Jihanki.new
   end
-  
-  subject { @jihanki.display }
+  subject { @jihanki }
 
   context "何もしないときに0円を表示" do
-    it { should == 0 }
+    its(:display) { should == 0 }
   end
 
   context "自販機に入る場合" do
     [10, 50, 100, 500, 1000].each do |num|
       context "#{num}円を入力したら#{num}円と表示" do
         before { @jihanki.input(num) }
-        it { should eq num }
+        its(:display) { should eq num }
       end
     end
   end
@@ -28,19 +27,22 @@ describe "自販機" do
     [1, 5, 2000, 5000, 10000].each do |num|
       context "#{num}円を入力したら0円と表示" do
         before { @jihanki.input(num) }
-        it { should eq 0 }
+        its(:display) { should eq 0 }
       end
     end
   end
 
   context "複数回入金する場合" do
     context "想定内のもの" do
-      jihanki = Jihanki.new
-      [100, 10, 10].each do |num|
-        jihanki.input(num)
+      before do
+        @jihanki = Jihanki.new
+        [100, 10, 10].each do |num|
+          @jihanki.input(num)
+        end
       end
-      it { jihanki.display.should eq 120 }
-      it { jihanki.getOtsuri.should eq 0 }
+      subject { @jihanki }
+      its(:display) { should eq 120 }
+      its(:getOtsuri) { should eq 0 }
     end
 
     context "想定外のもの" do
