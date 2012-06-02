@@ -57,4 +57,15 @@ describe "自販機" do
       its(:otsuri) { should eq 2006 }
     end
   end
+
+  context "払い戻し" do
+      before do
+        @jihanki = Jihanki.new
+        [100, 10, 10, 50, 1000].each do |num|
+          @jihanki.input(num)
+        end
+      end
+      subject { @jihanki }
+      its(:harai_modoshi) { should eq 1170 }
+  end
 end

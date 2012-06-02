@@ -14,4 +14,8 @@ class Jihanki
       @total += input_money
     end
   end
+
+  def harai_modoshi
+    @total
+  end
 end
